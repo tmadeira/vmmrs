@@ -1,0 +1,7 @@
+/simulator
+*.o
+
+__pycache__
+venv
+
+.vscode
