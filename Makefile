@@ -1,15 +1,18 @@
 CXX=g++
 CPPFLAGS=-O4
 
-OBJS=src/game.o src/tps/arbitrary.o src/tps/cycle.o src/tps/clique.o src/taskrunner.o src/main.o
+OBJS=src/game.o src/tps/arbitrary.o src/tps/cycle.o src/tps/clique.o src/taskrunner.o
 
-all: simulator
+all: simulator taskrunner
 
-simulator: $(OBJS)
-	$(CXX) -o simulator $(OBJS)
+simulator: $(OBJS) src/main_simulator.o
+	$(CXX) -o simulator $(OBJS) src/main_simulator.o
+
+taskrunner: $(OBJS) src/main_taskrunner.o
+	$(CXX) -o taskrunner $(OBJS) src/main_taskrunner.o
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) src/main_simulator.o src/main_taskrunner.o
 
 distclean: clean
-	rm -rf simulator
+	rm -rf simulator taskrunner

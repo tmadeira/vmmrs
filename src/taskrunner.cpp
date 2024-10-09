@@ -8,7 +8,7 @@
 #include "tps/clique.h"
 #include "tps/cycle.h"
 
-TaskOutput runTask(TaskInput &input) {
+TaskOutput runTask(const TaskInput &input) {
   TaskOutput output;
 
   Game *g;
@@ -30,6 +30,9 @@ TaskOutput runTask(TaskInput &input) {
 
   output.timeNodesActive = iterations;
   output.probRedConsensus = g->winProb(red_c);
+
+  output.consensus = -1;
+  output.timeConsensus = -1;
 
   if (input.finish) {
     while (!g->consensus()) {

@@ -9,7 +9,7 @@ def run_exp2():
     y1 = []
     y2 = []
     for n in range(10, 1000):
-        results = run_tasks(100, "clique", n, 0.4, 0.2)
+        results = run_tasks(100, "clique", n, 0.4, 0.2, True)
         prob_red_consensus = []
         consensus = []
         for result in results:

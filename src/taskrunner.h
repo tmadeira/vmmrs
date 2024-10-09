@@ -19,5 +19,5 @@ struct TaskOutput {
   int consensus;
 };
 
-TaskOutput runTask(TaskInput &input);
+TaskOutput runTask(const TaskInput &input);
 #endif
