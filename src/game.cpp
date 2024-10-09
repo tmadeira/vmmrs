@@ -21,7 +21,7 @@ Game::~Game() {
 void Game::reset(double red, double blue) {
   int red_count = red * n;
   int blue_count = blue * n;
-  int undecided_count = n - red_count - blue_count;
+  int agnostic_count = n - red_count - blue_count;
   for (int i = 0; i < red_count; i++) {
     color[i] = red_c;
   }
@@ -29,7 +29,7 @@ void Game::reset(double red, double blue) {
     color[i] = blue_c;
   }
   for (int i = red_count + blue_count; i < n; i++) {
-    color[i] = undecided_c;
+    color[i] = agnostic_c;
   }
   shuffle(color, color + n, generator);
 }
@@ -37,7 +37,7 @@ void Game::reset(double red, double blue) {
 color_t Game::consensus() {
   for (int i = 0; i < n; i++) {
     if (color[i] != color[0]) {
-      return undecided_c;
+      return agnostic_c;
     }
   }
   return color[0];
@@ -45,7 +45,7 @@ color_t Game::consensus() {
 
 bool Game::decided() {
   for (int i = 0; i < n; i++) {
-    if (color[i] == undecided_c) {
+    if (color[i] == agnostic_c) {
       return false;
     }
   }
@@ -63,8 +63,8 @@ void Game::debug() {
   printf("n = %d\n", n);
   int count[3];
   fillCounts(count);
-  printf("- und: %d\n", count[undecided_c]);
+  printf("- agnostic: %d\n", count[agnostic_c]);
   printf("- red: %d\n", count[red_c]);
-  printf("- blu: %d\n", count[blue_c]);
+  printf("- blue: %d\n", count[blue_c]);
   printf("\n");
 }

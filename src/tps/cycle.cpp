@@ -23,7 +23,7 @@ void CycleGame::step() {
   for (int i = 0; i < n; i++) {
     int r = dist(generator);
     color[i] = r ? old_color[(i + n - 1) % n] : old_color[(i + 1) % n];
-    if (color[i] == undecided_c) {
+    if (color[i] == agnostic_c) {
       color[i] = old_color[i];
     }
   }
@@ -31,7 +31,7 @@ void CycleGame::step() {
 
 double CycleGame::winProb(color_t color) {
   if (!decided()) {
-    fprintf(stderr, "Graph has undecided states.\n");
+    fprintf(stderr, "Graph has agnostic states.\n");
     exit(1);
   }
 

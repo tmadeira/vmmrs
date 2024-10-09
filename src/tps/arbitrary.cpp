@@ -68,7 +68,7 @@ void ArbitraryGame::step() {
     uniform_int_distribution<int> dist(0, edges[i].size() - 1);
     int r = edges[i][dist(generator)];
     color[i] = old_color[r];
-    if (color[i] == undecided_c) {
+    if (color[i] == agnostic_c) {
       color[i] = old_color[i];
     }
   }
@@ -76,7 +76,7 @@ void ArbitraryGame::step() {
 
 double ArbitraryGame::winProb(color_t c) {
   if (!decided()) {
-    fprintf(stderr, "Graph has undecided states.\n");
+    fprintf(stderr, "Graph has agnostic states.\n");
     exit(1);
   }
 

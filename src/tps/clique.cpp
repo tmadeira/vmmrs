@@ -9,16 +9,16 @@ void CliqueGame::step() {
     color_t old_color = color[i];
     count[old_color]--;
     int r = dist(generator);
-    color[i] = r < count[undecided_c]                  ? old_color
-               : r < count[undecided_c] + count[red_c] ? red_c
-                                                       : blue_c;
+    color[i] = r < count[agnostic_c]                  ? old_color
+               : r < count[agnostic_c] + count[red_c] ? red_c
+                                                      : blue_c;
     count[old_color]++;
   }
 }
 
 double CliqueGame::winProb(color_t color) {
   if (!decided()) {
-    fprintf(stderr, "Graph has undecided states.\n");
+    fprintf(stderr, "Graph has agnostic states.\n");
     exit(1);
   }
 

@@ -1,8 +1,8 @@
-Consensus with Inactive States
+Consensus with Agnostic States
 ==
 
 This repository contains code, data and plots of a paper on consensus with
-inactive states.
+agnostic states.
 
 ### Usage
 
@@ -20,9 +20,9 @@ To run:
 $ ./simulator <tp> <n> <red> <blue> [<seed>]
 ```
 
-where `<tp>` is the network structure, `<n>` is the number of nodes, `<red>`
-(`<blue>`) is the proportion of red (blue) nodes, `<seed>` is the random
-seed.
+where `<tp>` is the network structure (or the path of an edge list file with
+an arbitrary structure), `<n>` is the number of nodes, `<red>` (`<blue>`) is
+the proportion of red (blue) nodes, `<seed>` is the random seed.
 
 **Supported network structures:**
 clique, cycle.

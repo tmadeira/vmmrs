@@ -3,7 +3,7 @@
 
 #include <random>
 
-enum color_t { undecided_c = 0, red_c = 1, blue_c = 2 };
+enum color_t { agnostic_c = 0, red_c = 1, blue_c = 2 };
 
 class Game {
  protected:
