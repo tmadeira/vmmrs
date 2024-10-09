@@ -4,13 +4,16 @@
 #include <string>
 
 #include "game.h"
+#include "tps/arbitrary.h"
 #include "tps/clique.h"
 #include "tps/cycle.h"
 
 using namespace std;
 
 void panic_usage(char *argv[]) {
-  fprintf(stderr, "Usage: %s <clique|cycle> <n> <red> <blue> [<seed>]\n",
+  fprintf(stderr,
+          "Usage: %s <clique|cycle|path_to_edgelist_file> <n> <red> <blue> "
+          "[<seed>]\n",
           argv[0]);
   exit(1);
 }
@@ -21,9 +24,6 @@ int main(int argc, char *argv[]) {
   }
 
   string tp = argv[1];
-  if (tp != "clique" && tp != "cycle") {
-    panic_usage(argv);
-  }
 
   int n = stol(argv[2]);
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   } else if (tp == "cycle") {
     g = new CycleGame(n, seed);
   } else {
-    panic_usage(argv);
+    g = new ArbitraryGame(seed, tp);
   }
 
   g->reset(red, blue);

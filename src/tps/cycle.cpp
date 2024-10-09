@@ -15,6 +15,8 @@ CycleGame::CycleGame(int n, unsigned seed) : Game(n, seed) {
   }
 }
 
+CycleGame::~CycleGame() { free(old_color); }
+
 void CycleGame::step() {
   std::uniform_int_distribution<int> dist(0, 1);
   std::swap(old_color, color);

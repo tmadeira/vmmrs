@@ -9,6 +9,7 @@ class CycleGame : public Game {
 
  public:
   CycleGame(int n, unsigned seed);
+  ~CycleGame();
   void step();
   double winProb(color_t color);
 };
