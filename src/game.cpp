@@ -21,6 +21,10 @@ Game::~Game() {
 void Game::reset(double red, double blue) {
   int red_count = red * n;
   int blue_count = blue * n;
+  if (red_count + blue_count == 0) {
+    fprintf(stderr, "Can't start game with only agnostic states.\n");
+    exit(1);
+  }
   int agnostic_count = n - red_count - blue_count;
   for (int i = 0; i < red_count; i++) {
     color[i] = red_c;
