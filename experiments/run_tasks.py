@@ -1,9 +1,12 @@
+from pathlib import Path
 import os
+
+task_runner_bin = str(Path(__file__).parent.parent.absolute()) + "/taskrunner"
 
 
 def run_tasks(runs, tp, n, red, blue, finish=False):
     stream = os.popen(
-        "./taskrunner %d %s %d %f %f %d" % (runs, tp, n, red, blue, finish)
+        "%s %d %s %d %f %f %d" % (task_runner_bin, runs, tp, n, red, blue, finish)
     )
     results = []
     lines = stream.read().strip().split("\n")

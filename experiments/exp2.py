@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def run_exp2():
+def run_exp():
     x = []
     y1 = []
     y2 = []
@@ -20,8 +20,8 @@ def run_exp2():
         y2.append(np.std(consensus) / sqrt(len(results)))
 
     plt.plot(x, y1, y2)
-    plt.show()
+    plt.savefig("exp2.png")
 
 
 if __name__ == "__main__":
-    run_exp2()
+    run_exp()

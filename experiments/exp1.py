@@ -2,10 +2,9 @@ from math import sqrt
 from run_tasks import run_tasks
 from welford import update_agg, mean_and_variance
 import matplotlib.pyplot as plt
-import numpy as np
 
 
-def run_exp1():
+def run_exp():
     results = run_tasks(1000, "clique", 1000, 0.4, 0.2, True)
     runs = 0
     agg_formula = (0, 0, 0)
@@ -37,10 +36,10 @@ def run_exp1():
         err2.append(stderr_simulation)
 
     plt.plot(x, avg1, avg2)
-    plt.show()
+    plt.savefig("exp1_1.png")
     plt.plot(x, err1, err2)
-    plt.show()
+    plt.savefig("exp1_2.png")
 
 
 if __name__ == "__main__":
-    run_exp1()
+    run_exp()

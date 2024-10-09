@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def run_exp2():
+def run_exp():
     x = []
     for n in range(101, 1001, 2):
         x.append(n)
@@ -17,8 +17,8 @@ def run_exp2():
                 prob_red_consensus.append(result["prob_red_consensus"])
             y.append(np.std(prob_red_consensus) / sqrt(len(results)))
         plt.plot(x, y)
-    plt.show()
+    plt.savefig("exp3.png")
 
 
 if __name__ == "__main__":
-    run_exp2()
+    run_exp()
