@@ -1,8 +1,8 @@
-Consensus with Undecided States
+Consensus with Inactive States
 ==
 
 This repository contains code, data and plots of a paper on consensus with
-undecided states.
+inactive states.
 
 ### Usage
 
