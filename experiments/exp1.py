@@ -6,7 +6,7 @@ import numpy as np
 
 
 def run_exp1():
-    results = run_tasks(1000, "clique", 1000, 0.4, 0.2)
+    results = run_tasks(1000, "clique", 1000, 0.4, 0.2, True)
     runs = 0
     agg_formula = (0, 0, 0)
     agg_simulation = (0, 0, 0)

@@ -13,7 +13,7 @@ using namespace std;
 void panic_usage(char *argv[]) {
   fprintf(stderr,
           "Usage: %s <clique|cycle|path_to_edgelist_file> <n> <red> <blue> "
-          "[<seed>]\n",
+          "[<finish> [<seed>]]\n",
           argv[0]);
   exit(1);
 }
@@ -30,8 +30,10 @@ int main(int argc, char *argv[]) {
   double red = stod(argv[3]);
   double blue = stod(argv[4]);
 
-  unsigned seed = argc > 5
-                      ? stoul(argv[5])
+  bool finish = argc > 5 ? stoi(argv[5]) : false;
+
+  unsigned seed = argc > 6
+                      ? stoul(argv[6])
                       : chrono::system_clock::now().time_since_epoch().count();
 
   Game *g;
@@ -55,13 +57,15 @@ int main(int argc, char *argv[]) {
   printf("time_nodes_active %d\n", iterations);
   printf("prob_red_consensus %.6f\n", g->winProb(red_c));
 
-  while (!g->consensus()) {
-    g->step();
-    iterations++;
-  }
+  if (finish) {
+    while (!g->consensus()) {
+      g->step();
+      iterations++;
+    }
 
-  printf("consensus %d\n", g->consensus() == red_c);
-  printf("time_consensus %d\n", iterations);
+    printf("consensus %d\n", g->consensus() == red_c);
+    printf("time_consensus %d\n", iterations);
+  }
 
   free(g);
 

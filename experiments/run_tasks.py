@@ -8,9 +8,13 @@ import sys
 threads = multiprocessing.cpu_count()
 
 
-def run_task(seed, tp, n, red, blue):
-    stream = os.popen("./simulator %s %d %f %f %d" % (tp, n, red, blue, seed))
+def run_task(seed, tp, n, red, blue, finish):
+    stream = os.popen(
+        "./simulator %s %d %f %f %d %d" % (tp, n, red, blue, finish, seed)
+    )
     results = stream.read().strip().split("\n")
+    consensus = -1
+    time_consensus = -1
     for line in results:
         if line.startswith("time_nodes_active"):
             time_nodes_active = line.split(" ")[1]
@@ -29,11 +33,11 @@ def run_task(seed, tp, n, red, blue):
     }
 
 
-def run_tasks(runs, tp, n, red, blue):
+def run_tasks(runs, tp, n, red, blue, finish=False):
     tasks = []
     with ThreadPoolExecutor(max_workers=threads) as e:
         for run in range(runs):
-            tasks.append(e.submit(run_task, run + 1, tp, n, red, blue))
+            tasks.append(e.submit(run_task, run + 1, tp, n, red, blue, finish))
     results = []
     for task in tasks:
         results.append(task.result())
@@ -61,7 +65,7 @@ if __name__ == "__main__":
         "consensus",
         "time_consensus",
     ]
-    results = run_tasks(runs, tp, n, red, blue)
+    results = run_tasks(runs, tp, n, red, blue, True)
     writer = csv.writer(sys.stdout)
     writer.writerow(header)
     for result in results:

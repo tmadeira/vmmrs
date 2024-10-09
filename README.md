@@ -17,12 +17,13 @@ You must have GCC/G++.
 To run:
 
 ```
-$ ./simulator <tp> <n> <red> <blue> [<seed>]
+$ ./simulator <tp> <n> <red> <blue> [<finish> [<seed>]]
 ```
 
 where `<tp>` is the network structure (or the path of an edge list file with
 an arbitrary structure), `<n>` is the number of nodes, `<red>` (`<blue>`) is
-the proportion of red (blue) nodes, `<seed>` is the random seed.
+the proportion of red (blue) nodes, `<finish>` is a boolean (1/0) indicating
+whether to run the simulation until consensus, and `<seed>` is the random seed.
 
 **Supported network structures:**
 clique, cycle.
