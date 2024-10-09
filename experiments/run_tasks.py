@@ -32,8 +32,8 @@ def run_task(seed, tp, n, red, blue):
 def run_tasks(runs, tp, n, red, blue):
     tasks = []
     with ThreadPoolExecutor(max_workers=threads) as e:
-        for seed in range(1, runs):
-            tasks.append(e.submit(run_task, seed, tp, n, red, blue))
+        for run in range(runs):
+            tasks.append(e.submit(run_task, run + 1, tp, n, red, blue))
     results = []
     for task in tasks:
         results.append(task.result())
