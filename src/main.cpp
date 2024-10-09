@@ -3,16 +3,13 @@
 #include <cstdlib>
 #include <string>
 
-#include "game.h"
-#include "tps/arbitrary.h"
-#include "tps/clique.h"
-#include "tps/cycle.h"
+#include "taskrunner.h"
 
 using namespace std;
 
 void panic_usage(char *argv[]) {
   fprintf(stderr,
-          "Usage: %s <clique|cycle|path_to_edgelist_file> <n> <red> <blue> "
+          "Usage: %s <tp|path_to_edgelist_file> <n> <red> <blue> "
           "[<finish> [<seed>]]\n",
           argv[0]);
   exit(1);
@@ -36,38 +33,14 @@ int main(int argc, char *argv[]) {
                       ? stoul(argv[6])
                       : chrono::system_clock::now().time_since_epoch().count();
 
-  Game *g;
-
-  if (tp == "clique") {
-    g = new CliqueGame(n, seed);
-  } else if (tp == "cycle") {
-    g = new CycleGame(n, seed);
-  } else {
-    g = new ArbitraryGame(seed, tp);
-  }
-
-  g->reset(red, blue);
-
-  int iterations = 0;
-  while (!g->decided()) {
-    g->step();
-    iterations++;
-  }
-
-  printf("time_nodes_active %d\n", iterations);
-  printf("prob_red_consensus %.6f\n", g->winProb(red_c));
-
+  TaskInput input = {seed, tp, n, red, blue, finish};
+  TaskOutput output = runTask(input);
+  printf("time_nodes_active %d\n", output.timeNodesActive);
+  printf("prob_red_consensus %.6f\n", output.probRedConsensus);
   if (finish) {
-    while (!g->consensus()) {
-      g->step();
-      iterations++;
-    }
-
-    printf("consensus %d\n", g->consensus() == red_c);
-    printf("time_consensus %d\n", iterations);
+    printf("consensus %d\n", output.consensus);
+    printf("time_consensus %d\n", output.timeConsensus);
   }
-
-  free(g);
 
   return 0;
 }
