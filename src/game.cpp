@@ -35,7 +35,6 @@ void Game::reset(double red, double blue) {
   for (int i = red_count + blue_count; i < n; i++) {
     color[i] = agnostic_c;
   }
-  shuffle(color, color + n, generator);
 }
 
 color_t Game::consensus() {
