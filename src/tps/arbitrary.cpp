@@ -1,8 +1,10 @@
 #include "arbitrary.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <sstream>
 
 using namespace std;
@@ -89,4 +91,53 @@ double ArbitraryGame::winProb(color_t c) {
 
   double p = d / (double)(2.0 * edgeCount);
   return p;
+}
+
+void ArbitraryGame::resizeHelper(map<int, int> &M, int u) {
+  if (M.size() >= n) {
+    return;
+  }
+  M[u] = M.size();
+  shuffle(edges[u].begin(), edges[u].end(), generator);
+  for (int i = 0; i < edges[u].size() && M.size() < n; i++) {
+    int v = edges[u][i];
+    if (M.find(v) == M.end()) {
+      resizeHelper(M, v);
+    }
+  }
+}
+
+void ArbitraryGame::resizeGraph(int newN) {
+  uniform_int_distribution<int> dist(0, n);
+  map<int, int> M;
+
+  int s = dist(generator);
+  n = newN;
+  resizeHelper(M, s);
+
+  edgeCount = 0;
+  vector<vector<int>> newEdges(n);
+  for (auto it = M.begin(); it != M.end(); it++) {
+    for (int v : edges[it->first]) {
+      if (M.find(v) != M.end()) {
+        edgeCount++;
+        newEdges[it->second].push_back(M[v]);
+      }
+    }
+  }
+
+  edges = newEdges;
+  edgeCount /= 2;
+}
+
+vector<pair<int, int>> ArbitraryGame::getEdgeList() {
+  vector<pair<int, int>> E;
+  for (int u = 0; u < n; u++) {
+    for (int v : edges[u]) {
+      if (u <= v) {
+        E.push_back(make_pair(u, v));
+      }
+    }
+  }
+  return E;
 }
