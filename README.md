@@ -1,8 +1,8 @@
-Consensus with Agnostic States
+Consensus Protocols on Graphs with Agnostic States
 ==
 
-This repository contains code, data and plots of a paper on consensus with
-agnostic states.
+This repository contains code, data and plots of a paper on consensus protocols
+on graphs with agnostic states.
 
 ### Usage
 
@@ -26,7 +26,7 @@ the proportion of red (blue) nodes, `<finish>` is a boolean (1/0) indicating
 whether to run the simulation until consensus, and `<seed>` is the random seed.
 
 **Supported network structures:**
-clique, cycle.
+clique, cycle, custom edgefile.
 
 ### Experiments
 
