@@ -3,8 +3,10 @@ from run_tasks import run_tasks
 from welford import update_agg, mean_and_variance
 import matplotlib.pyplot as plt
 
-n_runs = 405
+n_runs = 401
 step = 20
+
+line_styles = ["solid", "dotted", "dashed"]
 
 
 def tex_plot(x, y):
@@ -15,17 +17,35 @@ def tex_plot(x, y):
 
 
 def run_exp():
+    x = []
+
     results = []
     results.append(run_tasks(n_runs, "clique", 1001, 0.05, 0.05, True))
     results.append(run_tasks(n_runs, "cycle", 1001, 0.05, 0.05, True))
+    results.append(
+        run_tasks(
+            n_runs,
+            "graphs/soc-pokec-relationships_1001.edgelist",
+            1001,
+            0.05,
+            0.05,
+            True,
+        )
+    )
 
-    agg_formula = [(0, 0, 0), (0, 0, 0)]
-    agg_simulation = [(0, 0, 0), (0, 0, 0)]
-    stderr_formula = [0.0, 0.0]
-    stderr_simulation = [0.0, 0.0]
+    agg_formula = []
+    agg_simulation = []
+    stderr_formula = []
+    stderr_simulation = []
+    yy = []
 
-    x = []
-    yy = [[], [], [], []]
+    for _ in range(len(results)):
+        agg_formula.append((0, 0, 0))
+        agg_simulation.append((0, 0, 0))
+        stderr_formula.append(0.0)
+        stderr_simulation.append(0.0)
+        yy.append([])
+        yy.append([])
 
     for run in range(n_runs):
         for i in range(len(results)):
@@ -43,21 +63,21 @@ def run_exp():
 
         if run >= 9 and (run + 1) % step == 0:
             x.append(run + 1)
-            yy[0].append(stderr_formula[0])
-            yy[1].append(stderr_formula[1])
-            yy[2].append(stderr_simulation[0])
-            yy[3].append(stderr_simulation[1])
 
-    plt.plot(x, yy[0])
-    plt.plot(x, yy[2])
-    plt.plot(x, yy[1], linestyle="dotted")
-    plt.plot(x, yy[3], linestyle="dotted")
+            for i in range(len(results)):
+                yy[i].append(stderr_formula[i])
+            for i in range(len(results)):
+                yy[len(results) + i].append(stderr_simulation[i])
+
+    count = 0
+    for y in yy:
+        plt.plot(x, y, linestyle=line_styles[count % len(results)])
+        count += 1
+
     plt.savefig("exp1.png")
 
-    tex_plot(x, yy[0])
-    tex_plot(x, yy[1])
-    tex_plot(x, yy[2])
-    tex_plot(x, yy[3])
+    for y in yy:
+        tex_plot(x, y)
 
 
 if __name__ == "__main__":

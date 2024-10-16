@@ -6,6 +6,8 @@
 \newcommand{\cliquecolor}{cliquecolor!75!blue}
 \definecolor{cyclecolor}{HTML}{CC5800}
 \newcommand{\cyclecolor}{cyclecolor!75!red}
+\definecolor{othercolor}{HTML}{4E7E67}
+\newcommand{\othercolor}{othercolor!75!green}
 
 \begin{document}
 \begin{tikzpicture}
@@ -43,28 +45,6 @@
   (380, 0.002591)
   (400, 0.002498)
 };
-\addplot[color=\cyclecolor,mark=*,mark size=1pt] coordinates {
-  (20, 0.005595)
-  (40, 0.003308)
-  (60, 0.002790)
-  (80, 0.002496)
-  (100, 0.002202)
-  (120, 0.002021)
-  (140, 0.001812)
-  (160, 0.001712)
-  (180, 0.001658)
-  (200, 0.001579)
-  (220, 0.001489)
-  (240, 0.001439)
-  (260, 0.001390)
-  (280, 0.001383)
-  (300, 0.001333)
-  (320, 0.001303)
-  (340, 0.001268)
-  (360, 0.001229)
-  (380, 0.001195)
-  (400, 0.001155)
-};
 \addplot[color=\cliquecolor,mark=x,mark size=1.5pt] coordinates {
   (20, 0.102470)
   (40, 0.076547)
@@ -86,6 +66,28 @@
   (360, 0.025820)
   (380, 0.025235)
   (400, 0.024568)
+};
+\addplot[color=\cyclecolor,mark=*,mark size=1pt] coordinates {
+  (20, 0.005595)
+  (40, 0.003308)
+  (60, 0.002790)
+  (80, 0.002496)
+  (100, 0.002202)
+  (120, 0.002021)
+  (140, 0.001812)
+  (160, 0.001712)
+  (180, 0.001658)
+  (200, 0.001579)
+  (220, 0.001489)
+  (240, 0.001439)
+  (260, 0.001390)
+  (280, 0.001383)
+  (300, 0.001333)
+  (320, 0.001303)
+  (340, 0.001268)
+  (360, 0.001229)
+  (380, 0.001195)
+  (400, 0.001155)
 };
 \addplot[color=\cyclecolor,mark=x,mark size=1.5pt] coordinates {
   (20, 0.109545)
@@ -109,7 +111,58 @@
   (380, 0.025648)
   (400, 0.024995)
 };
-\legend{clique using formula, cycle using formula, clique until consensus, cycle until consensus}
+\addplot[color=\othercolor,mark=*,mark size=1pt] coordinates {
+  (20, 0.037424)
+  (40, 0.030861)
+  (60, 0.025490)
+  (80, 0.021847)
+  (100, 0.019667)
+  (120, 0.017501)
+  (140, 0.016136)
+  (160, 0.015010)
+  (180, 0.013980)
+  (200, 0.013155)
+  (220, 0.012747)
+  (240, 0.012293)
+  (260, 0.011850)
+  (280, 0.011445)
+  (300, 0.011092)
+  (320, 0.010643)
+  (340, 0.010261)
+  (360, 0.010015)
+  (380, 0.009785)
+  (400, 0.009493)
+};
+\addplot[color=\othercolor,mark=x,mark size=1.5pt] coordinates {
+  (20, 0.102470)
+  (40, 0.078162)
+  (60, 0.063647)
+  (80, 0.055269)
+  (100, 0.049183)
+  (120, 0.045005)
+  (140, 0.041404)
+  (160, 0.038827)
+  (180, 0.036747)
+  (200, 0.034900)
+  (220, 0.033351)
+  (240, 0.031949)
+  (260, 0.030640)
+  (280, 0.029660)
+  (300, 0.028610)
+  (320, 0.027635)
+  (340, 0.026797)
+  (360, 0.026032)
+  (380, 0.025369)
+  (400, 0.024736)
+};
+\legend{
+  clique using formula,
+  clique until consensus,
+  cycle using formula,
+  cycle until consensus,
+  pokec using formula,
+  pokec until consensus
+}
 \end{axis}
 \end{tikzpicture}
 \end{document}
