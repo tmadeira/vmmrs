@@ -18,7 +18,7 @@ def run_exp():
     yy_error = []
     for n in range(min_n, max_n + 1, delta_n):
         x.append(n)
-    for p in [0.02, 0.1, 0.3]:
+    for p in [0.025, 0.25]:
         for tp in ["clique", "cycle"]:
             y_prob = []
             y_error = []
