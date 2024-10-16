@@ -64,6 +64,12 @@ ArbitraryGame::ArbitraryGame(unsigned seed, string edgelistFile)
 
 ArbitraryGame::~ArbitraryGame() { free(old_color); }
 
+void ArbitraryGame::reset(double red, double blue) {
+  Game::reset(red, blue);
+  minstd_rand fixed_generator(1);
+  shuffle(color, color + n, fixed_generator);
+}
+
 void ArbitraryGame::step() {
   swap(old_color, color);
   for (int i = 0; i < n; i++) {

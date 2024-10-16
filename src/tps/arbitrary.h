@@ -17,6 +17,7 @@ class ArbitraryGame : public Game {
  public:
   ArbitraryGame(unsigned seed, string edgelistFile);
   ~ArbitraryGame();
+  void reset(double red, double blue) override;
   void step();
   double winProb(color_t color);
   void resizeGraph(int n);

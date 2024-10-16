@@ -14,7 +14,7 @@ class Game {
  public:
   Game(int n, unsigned seed);
   ~Game();
-  void reset(double red, double blue);
+  virtual void reset(double red, double blue);
   color_t consensus();
   bool decided();
   void fillCounts(int *count);

@@ -76,8 +76,10 @@ def run_exp():
 
     plt.savefig("exp1.png")
 
-    for y in yy:
-        tex_plot(x, y)
+    for i in range(len(results)):
+        tex_plot(x, yy[2 * i])
+    for i in range(len(results)):
+        tex_plot(x, yy[2 * i + 1])
 
 
 if __name__ == "__main__":
