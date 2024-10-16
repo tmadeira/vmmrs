@@ -1,6 +1,6 @@
 from math import sqrt
 from run_tasks import run_tasks
-from welford import update_agg, mean_and_variance
+from util import update_agg, mean_and_variance
 import matplotlib.pyplot as plt
 
 n_runs = 405

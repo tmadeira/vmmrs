@@ -2,14 +2,13 @@ from math import sqrt
 from run_tasks import run_tasks
 import matplotlib.pyplot as plt
 import numpy as np
+from util import line_styles, tex_plot
 
 num_times = 400
 
 min_n = 301
 max_n = 3001
 delta_n = 100
-
-line_styles = ["solid", "dotted"]
 
 
 def run_exp():
@@ -34,20 +33,9 @@ def run_exp():
 
     count = 0
 
-    """
-    for y in yy_prob:
-        plt.plot(x, y, linestyle=line_styles[count % 2])
-        count += 1
-    plt.show()
-    plt.clf()
-    """
-
     for y in yy_error:
-        print("\\addplot coordinates {")
-        for i in range(len(x)):
-            print("  (%d, %.6f)" % (x[i], y[i]))
-        print("};")
         plt.plot(x, y, linestyle=line_styles[count % 2])
+        tex_plot(x, y)
         count += 1
     plt.savefig("exp2.png")
 

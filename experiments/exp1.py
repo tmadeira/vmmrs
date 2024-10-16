@@ -1,19 +1,10 @@
 from math import sqrt
 from run_tasks import run_tasks
-from welford import update_agg, mean_and_variance
 import matplotlib.pyplot as plt
+from util import update_agg, mean_and_variance, line_styles, tex_plot
 
 n_runs = 401
 step = 20
-
-line_styles = ["solid", "dotted", "dashed"]
-
-
-def tex_plot(x, y):
-    print("\\addplot coordinates {")
-    for i in range(len(x)):
-        print("  (%d, %.6f)" % (x[i], y[i]))
-    print("};")
 
 
 def run_exp():
@@ -54,11 +45,13 @@ def run_exp():
             agg_formula[i] = update_agg(
                 agg_formula[i], result[run]["prob_red_consensus"]
             )
-            (avg_formula, variance_formula) = mean_and_variance(agg_formula[i])
+            (_avg_formula, variance_formula) = mean_and_variance(agg_formula[i])
             stderr_formula[i] = sqrt(variance_formula) / sqrt(run + 1)
 
             agg_simulation[i] = update_agg(agg_simulation[i], result[run]["consensus"])
-            (avg_simulation, variance_simulation) = mean_and_variance(agg_simulation[i])
+            (_avg_simulation, variance_simulation) = mean_and_variance(
+                agg_simulation[i]
+            )
             stderr_simulation[i] = sqrt(variance_simulation) / sqrt(run + 1)
 
         if run >= 9 and (run + 1) % step == 0:

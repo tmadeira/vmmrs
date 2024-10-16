@@ -30,7 +30,8 @@ clique, cycle, custom edgefile.
 
 ### Experiments
 
-You must have Python. To create a virtual environment and install requirements:
+You must have Python and compile the source code in C++ first. Then, to create
+a virtual environment and install requirements:
 
 ```
 $ python -m venv venv
@@ -38,9 +39,20 @@ $ source venv/bin/activate
 $ pip install -r experiments/requirements.txt
 ```
 
-To run experiment 1:
+To run experiments 1 and 2 (which produce the figures used in the paper):
 
 ```
 $ python experiments/exp1.py
+$ python experiments/exp2.py
 ```
+
+### Utilities
+
+- `experiments/gen_er_graph.py` generates ER graphs and saves them to .edgelist
+  files.
+- `experiments/exp1_er.py` and `experiments/exp2_er.py` runs experiments 1
+  and 2 on ER graphs.
+- `/taskrunner` runs several tasks concurrently (using threads).
+- `/gen_subgraph` generates a connected subgraph from a given graph (i/o are
+  .edgelist files).
 
