@@ -18,8 +18,8 @@ class ArbitraryGame : public Game {
   ArbitraryGame(unsigned seed, string edgelistFile);
   ~ArbitraryGame();
   void reset(double red, double blue) override;
-  void step();
-  double winProb(color_t color);
+  void step() override;
+  double winProb(color_t color) override;
   void resizeGraph(int n);
   vector<pair<int, int>> getEdgeList();
 };
