@@ -1,8 +1,13 @@
-Consensus Protocols on Graphs with Agnostic States
-==
+# Voter Model Meets Rumour Spreading
 
-This repository contains code, data and plots of a paper on consensus protocols
-on graphs with agnostic states.
+## A Study of Consensus Protocols on Graphs with Agnostic Nodes
+
+_By Marcelo Matheus Gauy, Anna Abramishvili, Eduardo Colli, Tiago Madeira,
+Frederik Mallmann-Trenn, Vinícius Franco Vasconcelos, David Kohan Marzagão._
+
+This repository contains code, data and plots used in an accepted paper that
+will be published in the 24th International Conference on Autonomous Agents
+and Multi-Agent Systems (AAMAS 2025).
 
 ### Usage
 
@@ -26,7 +31,7 @@ the proportion of red (blue) nodes, `<finish>` is a boolean (1/0) indicating
 whether to run the simulation until consensus, and `<seed>` is the random seed.
 
 **Supported network structures:**
-clique, cycle, custom edgefile.
+clique, cycle, custom edgefile (treated as a undirected graph).
 
 ### Experiments
 
@@ -48,11 +53,10 @@ $ python experiments/exp2.py
 
 ### Utilities
 
-- `experiments/gen_er_graph.py` generates ER graphs and saves them to .edgelist
+- `/experiments/gen_er_graph.py` generates ER graphs and saves them to .edgelist
   files.
-- `experiments/exp1_er.py` and `experiments/exp2_er.py` runs experiments 1
+- `/experiments/exp1_er.py` and `/experiments/exp2_er.py` runs experiments 1
   and 2 on ER graphs.
 - `/taskrunner` runs several tasks concurrently (using threads).
 - `/gen_subgraph` generates a connected subgraph from a given graph (i/o are
   .edgelist files).
-
