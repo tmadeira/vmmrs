@@ -1,5 +1,5 @@
 CXX=g++
-CPPFLAGS=-O3 -std=c++11
+CPPFLAGS=-O3 -std=c++17
 
 OBJS=src/game.o src/tps/arbitrary.o src/tps/cycle.o src/tps/clique.o src/taskrunner.o
 

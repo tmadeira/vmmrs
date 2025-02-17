@@ -28,14 +28,25 @@ int main(int argc, char *argv[]) {
   bool finish = stoi(argv[6]);
 
   boost::asio::thread_pool pool;
+  std::vector<std::future<void>> futures;
+
   for (unsigned run = 0; run < runs; run++) {
     TaskInput input = {run + 1, tp, n, red, blue, finish};
-    boost::asio::post(pool, [input]() {
+    std::promise<void> promise;
+    futures.push_back(promise.get_future());
+
+    boost::asio::post(pool, [input, promise = std::move(promise)]() mutable {
       TaskOutput output = runTask(input);
       printf("%u,%d,%.6f,%d,%d\n", input.seed, output.timeNodesActive,
              output.probRedConsensus, output.consensus, output.timeConsensus);
+      promise.set_value();
     });
   }
+
+  for (auto &future : futures) {
+    future.get();
+  }
+
   pool.join();
 
   return 0;
