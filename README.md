@@ -51,12 +51,22 @@ $ python experiments/exp1.py
 $ python experiments/exp2.py
 ```
 
+To run experiments 3 and 4 (which produce the figures used in the appendix):
+
+```
+$ python experiments/exp3.py
+$ python experiments/exp4.py
+```
+
 ### Utilities
 
-- `/experiments/gen_er_graph.py` generates ER graphs and saves them to .edgelist
-  files.
+- `/experiments/gen_er_graph.py` generates Erdos-Renyi (ER) graphs and saves
+  them to .edgelist files.
 - `/experiments/exp1_er.py` and `/experiments/exp2_er.py` runs experiments 1
   and 2 on ER graphs.
+- `/experiments/gen_sbm_graph.py` generates stochastic block models and saves
+  them to .edgelist files (and `/gen_sbm_graphs.sh` generates all SBM graphs
+  that were used in Experiment 4).
 - `/taskrunner` runs several tasks concurrently (using threads).
 - `/gen_subgraph` generates a connected subgraph from a given graph (i/o are
   .edgelist files).
