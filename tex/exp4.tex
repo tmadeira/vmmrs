@@ -1,0 +1,123 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{pgfplots}
+
+\definecolor{cliquecolor}{HTML}{457B9D}
+\newcommand{\cliquecolor}{cliquecolor!75!blue}
+\definecolor{cyclecolor}{HTML}{CC5800}
+\newcommand{\cyclecolor}{cyclecolor!75!red}
+\definecolor{othercolor}{HTML}{4E7E67}
+\newcommand{\othercolor}{othercolor!75!green}
+
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotsset{yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=3}, scaled y ticks=false}
+  \pgfplotsset{every axis legend/.append style={at={(0.5,1)},anchor=south}} %%% To put legend outside the box
+\begin{axis}[legend columns=3, %%% Legends horizontally
+        %axis equal image=true,unit vector ratio=9 1,width=1.1\columnwidth, %%% size of box
+        ymin=0,
+        ymax=0.005,
+        every tick label/.append style={font=\scriptsize},legend style={font=\scriptsize}, %%% size of legends
+        xlabel=$n$, ylabel=$\sigma_{\bar{x}}$, %%% axis labels
+        every axis y label/.style={at={(ticklabel cs:1.02)},anchor=south west}, %%%% position of y-axis legend
+        every axis x label/.style={at={(ticklabel cs:1.01)},anchor=south}, %%%% position of y-axis legend
+        ]
+    %\draw[help lines] (axis cs:0,1) -- (axis cs:3,1);
+\addplot[color=\cliquecolor,mark=*,mark size=1pt] coordinates {
+  (300, 0.004536)
+  (400, 0.003617)
+  (500, 0.003501)
+  (600, 0.003290)
+  (700, 0.002942)
+  (800, 0.002714)
+  (900, 0.002624)
+  (1000, 0.002458)
+  (1100, 0.002103)
+  (1200, 0.002334)
+  (1300, 0.002275)
+  (1400, 0.002200)
+  (1500, 0.002209)
+  (1600, 0.002182)
+  (1700, 0.002011)
+  (1800, 0.001728)
+  (1900, 0.001779)
+  (2000, 0.001815)
+  (2100, 0.001605)
+  (2200, 0.001717)
+  (2300, 0.001621)
+  (2400, 0.001597)
+  (2500, 0.001555)
+  (2600, 0.001571)
+  (2700, 0.001490)
+  (2800, 0.001532)
+  (2900, 0.001560)
+  (3000, 0.001422)
+};
+\addplot[color=\cyclecolor,mark=*,mark size=1pt] coordinates {
+  (300, 0.004653)
+  (400, 0.003530)
+  (500, 0.003383)
+  (600, 0.003256)
+  (700, 0.003010)
+  (800, 0.002729)
+  (900, 0.002646)
+  (1000, 0.002396)
+  (1100, 0.002278)
+  (1200, 0.002216)
+  (1300, 0.002191)
+  (1400, 0.002063)
+  (1500, 0.002065)
+  (1600, 0.001947)
+  (1700, 0.001857)
+  (1800, 0.001827)
+  (1900, 0.001743)
+  (2000, 0.001700)
+  (2100, 0.001719)
+  (2200, 0.001716)
+  (2300, 0.001701)
+  (2400, 0.001625)
+  (2500, 0.001613)
+  (2600, 0.001480)
+  (2700, 0.001513)
+  (2800, 0.001425)
+  (2900, 0.001422)
+  (3000, 0.001467)
+};
+\addplot[color=\othercolor,mark=*,mark size=1pt] coordinates {
+  (300, 0.004470)
+  (400, 0.003940)
+  (500, 0.003292)
+  (600, 0.003273)
+  (700, 0.002968)
+  (800, 0.002806)
+  (900, 0.002423)
+  (1000, 0.002523)
+  (1100, 0.002310)
+  (1200, 0.002292)
+  (1300, 0.002147)
+  (1400, 0.002197)
+  (1500, 0.001926)
+  (1600, 0.001894)
+  (1700, 0.001782)
+  (1800, 0.001897)
+  (1900, 0.001856)
+  (2000, 0.001715)
+  (2100, 0.001720)
+  (2200, 0.001753)
+  (2300, 0.001626)
+  (2400, 0.001690)
+  (2500, 0.001569)
+  (2600, 0.001568)
+  (2700, 0.001571)
+  (2800, 0.001521)
+  (2900, 0.001512)
+  (3000, 0.001498)
+};
+\legend{
+  k = 25,
+  k = 50,
+  k = 100
+}
+\end{axis}
+\end{tikzpicture}
+\end{document}
