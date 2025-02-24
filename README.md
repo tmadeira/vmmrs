@@ -7,7 +7,11 @@ Frederik Mallmann-Trenn, Vinícius Franco Vasconcelos, David Kohan Marzagão._
 
 This repository contains code, data and plots used in an accepted paper that
 will be published in the 24th International Conference on Autonomous Agents
-and Multi-Agent Systems (AAMAS 2025).
+and Multi-Agent Systems (AAMAS 2025). To appear.
+
+We also have an extended version of the paper available on ArXiv. It contains 
+complete proofs and some additional experiments. It can be accessed here: 
+https://arxiv.org/abs/2502.15029
 
 ### Usage
 
